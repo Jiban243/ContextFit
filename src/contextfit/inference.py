@@ -1,3 +1,4 @@
+from .validation import validate_record
 import time
 import torch
 
@@ -46,6 +47,9 @@ def measure_generation(inputs, max_new_tokens=80):
     return result
 
 def prepare_inputs(question, context):
+    if model is None or tokenizer is None:
+        raise RuntimeError("Call configure(model, tokenizer) first.")
+
     messages = [
         {
             "role": "system",
@@ -68,13 +72,30 @@ def prepare_inputs(question, context):
         add_generation_prompt=True,
     )
 
-    return tokenizer(
+    encoded = tokenizer(
         prompt,
         return_tensors="pt",
         add_special_tokens=False,
-    ).to("cuda")
+        truncation=False,
+    )
+
+    input_tokens = encoded["input_ids"].shape[1]
+    model_limit = getattr(model.config, "max_position_embeddings", 4096)
+    total_limit = min(4096, model_limit)
+    reserved_output_tokens = 80
+
+    if input_tokens + reserved_output_tokens > total_limit:
+        raise ValueError(
+            f"Prompt has {input_tokens} tokens; "
+            f"maximum input is {total_limit - reserved_output_tokens} "
+            f"with {reserved_output_tokens} tokens reserved for output."
+        )
+
+    return encoded.to(next(model.parameters()).device)
+
 
 def run_record(record):
+    validate_record(record)
     prepared = prepare_inputs(
         question=record["question"],
         context=record["context"],

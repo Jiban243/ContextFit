@@ -1,0 +1,30 @@
+{
+  "created_at_utc": "2026-10-08T19:53:30.511157+00:00",
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "tokenizer_backend_sha256": "e360e6f6266884e6667874f3a7d158ca20c4639e2e1dc80427e1edc2c69a38c7",
+  "chat_template": "{%- if tools %}\n    {{- '<|im_start|>system\\n' }}\n    {%- if messages[0]['role'] == 'system' %}\n        {{- messages[0]['content'] }}\n    {%- else %}\n        {{- 'You are Qwen, created by Alibaba Cloud. You are a helpful assistant.' }}\n    {%- endif %}\n    {{- \"\\n\\n# Tools\\n\\nYou may call one or more functions to assist with the user query.\\n\\nYou are provided with function signatures within <tools></tools> XML tags:\\n<tools>\" }}\n    {%- for tool in tools %}\n        {{- \"\\n\" }}\n        {{- tool | tojson }}\n    {%- endfor %}\n    {{- \"\\n</tools>\\n\\nFor each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:\\n<tool_call>\\n{\\\"name\\\": <function-name>, \\\"arguments\\\": <args-json-object>}\\n</tool_call><|im_end|>\\n\" }}\n{%- else %}\n    {%- if messages[0]['role'] == 'system' %}\n        {{- '<|im_start|>system\\n' + messages[0]['content'] + '<|im_end|>\\n' }}\n    {%- else %}\n        {{- '<|im_start|>system\\nYou are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>\\n' }}\n    {%- endif %}\n{%- endif %}\n{%- for message in messages %}\n    {%- if (message.role == \"user\") or (message.role == \"system\" and not loop.first) or (message.role == \"assistant\" and not message.tool_calls) %}\n        {{- '<|im_start|>' + message.role + '\\n' + message.content + '<|im_end|>' + '\\n' }}\n    {%- elif message.role == \"assistant\" %}\n        {{- '<|im_start|>' + message.role }}\n        {%- if message.content %}\n            {{- '\\n' + message.content }}\n        {%- endif %}\n        {%- for tool_call in message.tool_calls %}\n            {%- if tool_call.function is defined %}\n                {%- set tool_call = tool_call.function %}\n            {%- endif %}\n            {{- '\\n<tool_call>\\n{\"name\": \"' }}\n            {{- tool_call.name }}\n            {{- '\", \"arguments\": ' }}\n            {{- tool_call.arguments | tojson }}\n            {{- '}\\n</tool_call>' }}\n        {%- endfor %}\n        {{- '<|im_end|>\\n' }}\n    {%- elif message.role == \"tool\" %}\n        {%- if (loop.index0 == 0) or (messages[loop.index0 - 1].role != \"tool\") %}\n            {{- '<|im_start|>user' }}\n        {%- endif %}\n        {{- '\\n<tool_response>\\n' }}\n        {{- message.content }}\n        {{- '\\n</tool_response>' }}\n        {%- if loop.last or (messages[loop.index0 + 1].role != \"tool\") %}\n            {{- '<|im_end|>\\n' }}\n        {%- endif %}\n    {%- endif %}\n{%- endfor %}\n{%- if add_generation_prompt %}\n    {{- '<|im_start|>assistant\\n' }}\n{%- endif %}\n",
+  "candidate_top_k": 10,
+  "policies": [
+    "top_k_8",
+    "top_k_2",
+    "budget_900"
+  ],
+  "max_input_tokens": 4016,
+  "input_sha256": {
+    "data/processed/chunks.jsonl": "642e83f32f8f09a2eaa888084192f012f95aff03d76468d5bcc5105f1e3ef8d6",
+    "data/evaluation/dev_gold.jsonl": "9e180d52ede8c3e61bc864f388e0f380e54398ebcb5952fc3386742328f8c100",
+    "data/evaluation/test_gold.jsonl": "ce4cf5193638fbab13408f0b8361eae7b7c3613bf936e25efa3fd0cafb82f88a"
+  },
+  "source_sha256": {
+    "src/contextfit/retrieval.py": "85a1a0adc1450c4f655c765d549c9773c52f6423111a3dee58614cabe00ba8f4",
+    "src/contextfit/context_policies.py": "18ad2379903831998980c0c169f5a3f6db7703a9077fb38c5052f01a8d0bfbc8",
+    "src/contextfit/validation.py": "c07488b47b6922df74f2e372d636f3a4f14bf8f320fc5dc913ad72a3545f9d7b"
+  },
+  "output_sha256": {
+    "dev_diagnostics.jsonl": "f3e7eb52bdca09202b18c2e477c115cce76c0c1e53a3dac0bfb4f490b04550c9",
+    "dev_requests.jsonl": "a9ced57c5cb9042d5890a11bb9c11362ea51a23d7ee476171232c926eb89ab7f",
+    "test_diagnostics.jsonl": "f0b1d16afa29714ff0de857f1a601fc937584be913d22aa54a44f0b1a5b23403",
+    "test_requests.jsonl": "9a9befa6683794e73d49397dafaa03680e3a1bcfc19616fc5cd07b7fa0aadcfd"
+  },
+  "annotation_review_status": "not_certified_by_exporter"
+}

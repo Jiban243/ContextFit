@@ -1,0 +1,45 @@
+[
+  {
+    "question_id": "dev_pythonpath",
+    "policy": "top_k_8",
+    "candidate_count": 10,
+    "selected_count": 8,
+    "context_tokens": 2246,
+    "prompt_tokens": 2308,
+    "selected_ids": [
+      "python_venv_chunk003",
+      "python_modules_chunk010",
+      "python_modules_chunk007",
+      "python_modules_chunk009",
+      "python_errors_chunk005",
+      "python_errors_chunk007",
+      "python_modules_chunk005",
+      "python_errors_chunk011"
+    ]
+  },
+  {
+    "question_id": "dev_pythonpath",
+    "policy": "top_k_2",
+    "candidate_count": 10,
+    "selected_count": 2,
+    "context_tokens": 573,
+    "prompt_tokens": 636,
+    "selected_ids": [
+      "python_venv_chunk003",
+      "python_modules_chunk010"
+    ]
+  },
+  {
+    "question_id": "dev_pythonpath",
+    "policy": "budget_900",
+    "candidate_count": 10,
+    "selected_count": 3,
+    "context_tokens": 827,
+    "prompt_tokens": 889,
+    "selected_ids": [
+      "python_venv_chunk003",
+      "python_modules_chunk010",
+      "python_modules_chunk007"
+    ]
+  }
+]

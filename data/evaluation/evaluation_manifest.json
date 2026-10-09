@@ -1,0 +1,7 @@
+{
+  "status": "draft_pending_human_review",
+  "dev_count": 6,
+  "test_count": 24,
+  "chunks_sha256": "642e83f32f8f09a2eaa888084192f012f95aff03d76468d5bcc5105f1e3ef8d6",
+  "note": "Do not pass gold answers or evidence labels to inference."
+}

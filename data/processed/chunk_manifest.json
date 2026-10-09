@@ -1,0 +1,10 @@
+{
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "max_chunk_tokens": 300,
+  "overlap_tokens": 0,
+  "chunker_version": "block_packing_v1",
+  "documents_sha256": "bfba781d352818b7829beaf41dd44095256f4ebb9d6b85f1eb6a1687d8608b13",
+  "chunks_sha256": "642e83f32f8f09a2eaa888084192f012f95aff03d76468d5bcc5105f1e3ef8d6",
+  "tokenizer_backend_sha256": "e360e6f6266884e6667874f3a7d158ca20c4639e2e1dc80427e1edc2c69a38c7",
+  "chunk_count": 50
+}

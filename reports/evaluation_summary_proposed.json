@@ -1,0 +1,44 @@
+[
+  {
+    "policy": "top_k_8",
+    "full_evidence_n_of_18": 18,
+    "fully_correct_n_of_18": 7,
+    "partially_correct_n_of_18": 6,
+    "incorrect_n_of_18": 5,
+    "correctness_points_of_36": 20,
+    "abstention_n_of_6": 4,
+    "unsupported_or_contradicted_n_of_24": 10,
+    "cited_answerable_n_of_18": 0,
+    "distinct_answers_at_cap_n_of_24": 3,
+    "median_of_question_median_seconds": 2.3235717160000604,
+    "max_peak_allocated_gib": 3.6507973670959473
+  },
+  {
+    "policy": "top_k_2",
+    "full_evidence_n_of_18": 16,
+    "fully_correct_n_of_18": 6,
+    "partially_correct_n_of_18": 4,
+    "incorrect_n_of_18": 8,
+    "correctness_points_of_36": 16,
+    "abstention_n_of_6": 3,
+    "unsupported_or_contradicted_n_of_24": 13,
+    "cited_answerable_n_of_18": 0,
+    "distinct_answers_at_cap_n_of_24": 2,
+    "median_of_question_median_seconds": 1.6683025924999129,
+    "max_peak_allocated_gib": 2.974128246307373
+  },
+  {
+    "policy": "budget_900",
+    "full_evidence_n_of_18": 17,
+    "fully_correct_n_of_18": 7,
+    "partially_correct_n_of_18": 3,
+    "incorrect_n_of_18": 8,
+    "correctness_points_of_36": 17,
+    "abstention_n_of_6": 4,
+    "unsupported_or_contradicted_n_of_24": 14,
+    "cited_answerable_n_of_18": 0,
+    "distinct_answers_at_cap_n_of_24": 3,
+    "median_of_question_median_seconds": 2.072079265000184,
+    "max_peak_allocated_gib": 3.043802261352539
+  }
+]

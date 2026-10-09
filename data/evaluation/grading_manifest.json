@@ -1,0 +1,27 @@
+{
+  "results_sha256": "45181b4421192f962f348e138d38078a80fc7e460e12002ed1d0e46faeeb6c09",
+  "gold_sha256": "ce4cf5193638fbab13408f0b8361eae7b7c3613bf936e25efa3fd0cafb82f88a",
+  "source_gold_review_status": "24 records pending",
+  "review_type": "assistant proposed; not human validated",
+  "grading_version": "v1",
+  "run_config": {
+    "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+    "model_revision": null,
+    "gpu": "Tesla T4",
+    "dtype": "torch.float16",
+    "attention": "sdpa",
+    "python": "3.13.15",
+    "torch": "2.11.0+cu130",
+    "transformers": "5.18.0",
+    "cuda": "13.0",
+    "max_new_tokens": 80,
+    "do_sample": false,
+    "requests_sha256": "9a9befa6683794e73d49397dafaa03680e3a1bcfc19616fc5cd07b7fa0aadcfd",
+    "source_sha256": {
+      "inference.py": "f6766e966969744c94eb5f020b2477a38e26f0bd672154a6909d49c4f2605459",
+      "benchmark.py": "6e5c739932aa4684bab90df3f28574ec93a057f2fe27e26aa76f9cd099caf746",
+      "validation.py": "c07488b47b6922df74f2e372d636f3a4f14bf8f320fc5dc913ad72a3545f9d7b"
+    },
+    "split": "test"
+  }
+}
